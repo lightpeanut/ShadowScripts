@@ -15,6 +15,14 @@
   link2.href = intentUrl2;
   link2.textContent = "令剪辑崩溃（com.hihonor.videoeditor）";
   document.body.appendChild(link2);
+
+  var json = '{"url": "https://laisicheng.github.io/pages/file_chooser_incept.html"}';
+  var encodedJson = encodeURIComponent(json);
+  var intentUrl = "gamecenter://contents/todocode?cd=21001&content=" + encodedJson;
+  var link = document.createElement('a');
+  link.href = intentUrl;
+  link.textContent = "点击打开剪辑（com.hihonor.videoeditor）";
+  document.body.appendChild(link);
   
 </script>
 </body>
