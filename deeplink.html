@@ -23,11 +23,13 @@
   link.textContent = "intentUri（com.hihonor.gamecenter）";
   document.body.appendChild(link);
 
-  var intentUrl = "intent:#Intent;action=com.hihonor.appmarket.dispatch.card.list;category=android.intent.category.DEFAULT;type=text/*;package=com.hihonor.appmarket;end"
+  var intentUrl = "deeplink://com.engine.transparent/open"
   var link = document.createElement('a');
   link.href = intentUrl;
-  link.textContent = "需要signature权限的intentUri（com.hihonor.gamecenter）";
+  link.textContent = "需要signature权限的intentUri（com.hihonor.appmarket）";
   document.body.appendChild(link);
+
+
   
 </script>
 </body>
