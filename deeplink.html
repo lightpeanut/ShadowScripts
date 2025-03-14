@@ -26,7 +26,13 @@
   var intentUrl = "deeplink://com.engine.transparent/open"
   var link = document.createElement('a');
   link.href = intentUrl;
-  link.textContent = "需要signature权限的intentUri（com.hihonor.appmarket）";
+  link.textContent = "需要signature权限的intentUri（com.hihonor.quickengine）";
+  document.body.appendChild(link);
+
+  var intentUrl = "intent://permission_list_activity#Intent;scheme=hnquickapp;action=android.intent.action.VIEW;package=com.hihonor.quickengine;end"
+  var link = document.createElement('a');
+  link.href = intentUrl;
+  link.textContent = "需要signature权限的intentUri（com.hihonor.quickengine2）";
   document.body.appendChild(link);
 
 
