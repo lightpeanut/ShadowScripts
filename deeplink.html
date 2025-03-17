@@ -23,16 +23,22 @@
   link.textContent = "intentUri（com.hihonor.gamecenter）";
   document.body.appendChild(link);
 
-  var intentUrl = "hnquickapp://permission_list_activity"
+  var intentUrl1 = "hnquickapp://permission_list_activity"
   var link = document.createElement('a');
   link.href = intentUrl;
   link.textContent = "需要signature权限的intentUri（com.hihonor.quickengine）";
   document.body.appendChild(link);
 
-  var intentUrl = "intent://permission_list_activity#Intent;scheme=hnquickapp;action=android.intent.action.VIEW;package=com.hihonor.quickengine;end"
+  var intentUrl2 = "intent://permission_list_activity#Intent;scheme=hnquickapp;action=android.intent.action.VIEW;package=com.hihonor.quickengine;end"
   var link = document.createElement('a');
   link.href = intentUrl;
   link.textContent = "需要signature权限的intentUri（com.hihonor.quickengine2）";
+  document.body.appendChild(link);
+
+  var intentUrl3 = "intent://anything#Intent;scheme=anything;action=org.hapjs.action.VIEW_ERROR;package=com.hihonor.quickengine;end"
+  var link = document.createElement('a');
+  link.href = intentUrl;
+  link.textContent = "export=false的intentUri（com.hihonor.quickengine3）";
   document.body.appendChild(link);
 
   document.getElementById('picker').addEventListener('change',
