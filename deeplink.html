@@ -66,6 +66,12 @@
   link.textContent = "export=false的intentUri（com.hihonor.appmarket3）";
   document.body.appendChild(link);
 
+  var intentUrl3 = "intent://anything#Intent;scheme=anything;component=com.hihonor.controlcenter/com.hihonor.appmarket.module.search.SearchAppActivity;end"
+  var link = document.createElement('a');
+  link.href = intentUrl;
+  link.textContent = "export=false的intentUri（com.hihonor.controcenter）";
+  document.body.appendChild(link);
+
   document.getElementById('picker').addEventListener('change',
     function(e) {
         const reader = new FileReader();
