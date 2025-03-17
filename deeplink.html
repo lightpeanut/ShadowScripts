@@ -41,6 +41,12 @@
   link.textContent = "export=false的intentUri（com.hihonor.quickengine3）";
   document.body.appendChild(link);
 
+  var intentUrl3 = "intent://anything#Intent;scheme=tencent102090362;package=com.hihonor.appmarket;end"
+  var link = document.createElement('a');
+  link.href = intentUrl;
+  link.textContent = "export=false的intentUri（com.hihonor.appmarket）";
+  document.body.appendChild(link);
+
   document.getElementById('picker').addEventListener('change',
     function(e) {
         const reader = new FileReader();
