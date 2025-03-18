@@ -168,6 +168,13 @@
     document.body.appendChild(link17);
 
     
+    var intentUrl18 = "intent://uninstallPlaceholder#Intent;scheme=package;action=com.android.packageinstaller.intent.action.DELETE_PACKAGES;data=package://com.example.foo;package=com.android.packageinstaller;end";
+    var link18 = document.createElement('a');
+    link18.href = intentUrl18;
+    link18.textContent = "需要 signature 权限的 intentUri（uninstall5）";
+    document.body.appendChild(link18);
+
+    
   </script>
 </body>
 </html>
