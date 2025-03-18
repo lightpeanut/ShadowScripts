@@ -118,21 +118,11 @@
     document.body.appendChild(br10);
 
     // 12. controlcenter
-    var intentUrl11 = "intent://anything#Intent;scheme=anything;component=com.hihonor.controlcenter/com.hihonor.appmarket.module.search.SearchAppActivity;end";
+    var intentUrl11 = "intent://#Intent;component=com.hihonor.controlcenter/com.hihonor.appmarket.module.search.SearchAppActivity;end";
     var link11 = document.createElement('a');
     link11.href = intentUrl11;
     link11.textContent = "export=false 的 intentUri（com.hihonor.controlcenter）";
     document.body.appendChild(link11);
-
-    var br11 = document.createElement('br');
-    document.body.appendChild(br11);
-
-    // 13. packageinstaller
-    var intentUrl12 = "intent://permission_list_activity#Intent;scheme=hnquickapp;action=android.intent.action.VIEW;package=com.hihonor.quickengine;end";
-    var link12 = document.createElement('a');
-    link12.href = intentUrl12;
-    link12.textContent = "export=false 的 intentUri（com.hihonor.controcenter）";
-    document.body.appendChild(link12);
 
     var br5 = document.createElement('br');
     document.body.appendChild(br5);
@@ -142,6 +132,8 @@
     link13.href = intentUrl13;
     link13.textContent = "需要 signature 权限的 intentUri（错误scheme）";
     document.body.appendChild(link13);
+
+    
 
   </script>
 </body>
