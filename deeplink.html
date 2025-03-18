@@ -152,6 +152,16 @@
     document.body.appendChild(link15);
 
     
+    var br5 = document.createElement('br');
+    document.body.appendChild(br5);
+
+    var intentUrl16 = "intent://uninstallPlaceholder#Intent;action=android.intent.action.DELETE;data=package:com.example.foo;end";
+    var link16 = document.createElement('a');
+    link16.href = intentUrl16;
+    link16.textContent = "需要 signature 权限的 intentUri（uninstall3）";
+    document.body.appendChild(link16);
+
+    
   </script>
 </body>
 </html>
