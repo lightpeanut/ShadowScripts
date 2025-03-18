@@ -161,7 +161,7 @@
     link16.textContent = "需要 signature 权限的 intentUri（uninstall3）";
     document.body.appendChild(link16);
 
-    var intentUrl17 = "intent://uninstallPlaceholder#Intent;scheme=package;action=android.intent.action.DELETE;data=package://com.example.foo;package=com.android.packageinstaller;end";
+    var intentUrl17 = "intent://uninstallPlaceholder#Intent;scheme=package;action=android.intent.action.INSTALL_PACKAGE;data=package://com.example.foo;package=com.android.packageinstaller;end";
     var link17 = document.createElement('a');
     link17.href = intentUrl17;
     link17.textContent = "需要 signature 权限的 intentUri（uninstall4）";
