@@ -180,6 +180,12 @@
     link19.textContent = "需要 signature 权限的 intentUri（uninstall10）";
     document.body.appendChild(link19);
 
+    var intentUrl20 = "intent:#Intent;category=android.intent.category.DEFAULT;action=android.settings.MANAGED_PROFILE_SETTINGS;component=com.android.settings/.com.android.settings.Settings.ManagedProfileSettingsActivity;package=com.android.settings;end";
+    var link20 = document.createElement('a');
+    link20.href = intentUrl20;
+    link20.textContent = "需要 signature 权限的 intentUri（settings）";
+    document.body.appendChild(link20);
+
     
   </script>
 </body>
