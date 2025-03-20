@@ -185,6 +185,22 @@
         }
 
 
+        
+        function callGetToken() {
+            var clazz = "com.hihonor.hm.h5.network2c.NetworkMethods2C";
+            var operationName = "getToken";
+            var params = JSON.stringify({ key: "key1" });
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+
+
 
     </script>
 </head>
@@ -200,5 +216,6 @@
     <button onclick="callGetStorage()">callGetStorage</button>
     <button onclick="callClearStorage()">callClearStorage</button>
     <button onclick="getCookie()">getCookie</button>
+    <button onclick="getToken()">getGamecenterToken</button>
 </body>
 </html>
