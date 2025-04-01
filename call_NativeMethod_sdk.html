@@ -215,6 +215,20 @@
             }
         }
 
+        function startDownload() {
+            var clazz = "com.hihonor.gamecenter.bu_h5.manager.AppOperateImp";
+            var operationName = "downloadButtonOnClick";
+            var params = JSON.stringify({ packageName: "com.happyelements.AndroidAnimal" });
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+
 
 
     </script>
@@ -233,5 +247,6 @@
     <button onclick="getCookie()">getCookie</button>
     <button onclick="callGetToken()">getGamecenterToken</button>
     <button onclick="callGetUserInfo()">getGamecenterUserInfo</button>
+    <button onclick="startDownload()">startDownload</button>
 </body>
 </html>
